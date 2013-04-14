@@ -15,7 +15,7 @@ int iszero(int *array, int count)
     return 1;
 }
 
-int complete(int n, int c)
+void complete(int n, int c)
 {
     int k = 0;
     int nk = n;

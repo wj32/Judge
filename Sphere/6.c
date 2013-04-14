@@ -137,7 +137,6 @@ void doaddsub(char *n1, int l1, char *n2, int l2, char op)
 {
     int width = MAX(l1, l2) + 1;
     char **lines = alloclines(width, 4);
-    int carry;
     int w1;
     int w2;
     
@@ -161,7 +160,6 @@ void domul(char *n1, int l1, char *n2, int l2)
     int lastlength = 1;
     int w1;
     int w2;
-    int iszero;
     
     memcpy(lines[0] + width - l1, n1, l1);
     memcpy(lines[1] + width - l2, n2, l2);
