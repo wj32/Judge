@@ -12,7 +12,7 @@ let maxProfit (s : int64 array) =
 
 let t = Console.ReadLine() |> int
 
-for _ in { 1 .. t } do
+for _ in 1 .. t do
   let n = Console.ReadLine() |> int
   let s = Console.ReadLine().Split(' ') |> Array.map int64
   printfn "%d" (maxProfit s)

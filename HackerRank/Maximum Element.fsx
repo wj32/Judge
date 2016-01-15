@@ -4,7 +4,7 @@ let n = Console.ReadLine() |> int
 let mutable stack = []
 let mutable maxStack = []
 
-for _ in { 1 .. n } do
+for _ in 1 .. n do
   match Console.ReadLine().Split(' ') |> Array.map int with
   | [|1; x|] ->
     stack <- x :: stack

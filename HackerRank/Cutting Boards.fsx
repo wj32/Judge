@@ -5,7 +5,7 @@ let t = Console.ReadLine() |> int
 
 type Direction = Horizontal | Vertical
 
-for _ in { 1 .. t } do
+for _ in 1 .. t do
   match Console.ReadLine().Split(' ') |> Array.map int64 with
   | [|m; n|] ->
     let costs =

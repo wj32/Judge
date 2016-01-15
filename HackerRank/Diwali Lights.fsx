@@ -4,7 +4,7 @@ let m = 100000L
 
 let t = Console.ReadLine() |> int
 
-for _ in { 1 .. t } do
+for _ in 1 .. t do
   let n = Console.ReadLine() |> int
   let rec pow2mod m n =
     if n = 0 then

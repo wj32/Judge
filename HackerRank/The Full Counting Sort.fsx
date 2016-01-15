@@ -2,7 +2,7 @@ open System
 
 let n = Console.ReadLine() |> int
 
-seq { 1 .. n }
+seq {1 .. n}
 |> Seq.mapi
   (fun i _ ->
     match Console.ReadLine().Split(' ') with

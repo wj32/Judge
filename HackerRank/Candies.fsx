@@ -16,7 +16,7 @@ let memoize (f : ('a -> 'b) -> 'a -> 'b) =
 
 let n = Console.ReadLine() |> int
 let a =
-  seq { 1 .. n }
+  seq {1 .. n}
   |> Seq.map (fun _ -> Console.ReadLine() |> int)
   |> Seq.toArray
 
@@ -27,7 +27,7 @@ let candies = memoize (fun r i ->
   | false, true -> r (i - 1) + 1
   | false, false -> max (r (i - 1)) (r (i + 1)) + 1)
 
-seq { 0 .. n - 1 }
+seq {0 .. n - 1}
 |> Seq.map candies
 |> Seq.sum
 |> printfn "%d"

@@ -13,6 +13,6 @@ let balanced (s : string) =
 
 let t = Console.ReadLine() |> int
 
-for _ in { 1 .. t } do
+for _ in 1 .. t do
   let s = Console.ReadLine()
   printfn "%s" (if balanced s then "YES" else "NO")
