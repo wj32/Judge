@@ -1,0 +1,1 @@
+seq {1 .. stdin.ReadLine() |> int} |> Seq.iter (fun _ -> stdin.ReadLine() |> uint32 |> (~~~) |> printfn "%d")

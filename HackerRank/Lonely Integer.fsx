@@ -1,0 +1,1 @@
+[0; 1] |> List.map (fun _ -> stdin.ReadLine().Split(' ') |> Seq.map int) |> List.item 1 |> Seq.reduce (^^^) |> printfn "%d"

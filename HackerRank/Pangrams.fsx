@@ -1,0 +1,1 @@
+printfn "%s" (if stdin.ReadLine().ToLower() |> Seq.filter System.Char.IsLetter |> Seq.distinct |> Seq.length = 26 then "pangram" else "not pangram")

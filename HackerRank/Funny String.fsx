@@ -1,0 +1,2 @@
+for _ in 1 .. (stdin.ReadLine() |> int) do
+  stdin.ReadLine() |> Seq.map int |> Seq.pairwise |> Seq.map (fun p -> p ||> (-) |> abs) |> Seq.toArray |> (fun a -> printfn "%s" (if a = Array.rev a then "Funny" else "Not Funny"))
