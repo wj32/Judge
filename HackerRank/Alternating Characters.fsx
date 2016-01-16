@@ -1,0 +1,1 @@
+{1 .. stdin.ReadLine() |> int} |> Seq.iter (fun _ -> stdin.ReadLine() |> Seq.pairwise |> Seq.filter (fun (x, y) -> x = y) |> Seq.length |> printfn "%d")

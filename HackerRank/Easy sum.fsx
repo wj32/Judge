@@ -1,0 +1,1 @@
+{1 .. stdin.ReadLine() |> int} |> Seq.iter (fun _ -> stdin.ReadLine().Split(' ') |> Array.map bigint.Parse |> function [|n; m|] -> printfn "%A" ((n / m) * m * (m - 1I) / 2I + (n % m) * ((n % m) + 1I) / 2I) | _ -> failwith "Invalid input")

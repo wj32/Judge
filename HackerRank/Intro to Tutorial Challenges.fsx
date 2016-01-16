@@ -1,0 +1,1 @@
+stdin.ReadLine() |> int |> fun v -> stdin.ReadLine() |> ignore |> fun () -> stdin.ReadLine().Split(' ') |> Seq.map int |> Seq.findIndex ((=) v) |> printfn "%d"

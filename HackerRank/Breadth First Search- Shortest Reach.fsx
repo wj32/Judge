@@ -12,7 +12,7 @@ for _ in 1 .. t do
     | _ -> failwith "Invalid input"
   
   let edges =
-    (seq { 1 .. m })
+    seq {1 .. m}
     |> Seq.fold
       (fun edges _ ->
         let (x, y) =

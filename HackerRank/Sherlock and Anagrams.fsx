@@ -1,15 +1,15 @@
 open System
 
 let frequencies (s : string) =
-  seq
-    { for i in 0 .. s.Length - 1 do
-        for j in i .. s.Length - 1 do
-          let f = Array.zeroCreate 26
-          for k in i .. j do
-            let index = int s.[k] - int 'a'
-            f.[index] <- f.[index] + 1
-          yield f
-    }
+  seq {
+    for i in 0 .. s.Length - 1 do
+    for j in i .. s.Length - 1 do
+      let f = Array.zeroCreate 26
+      for k in i .. j do
+        let index = int s.[k] - int 'a'
+        f.[index] <- f.[index] + 1
+      yield f
+  }
 
 let t = Console.ReadLine() |> int
 

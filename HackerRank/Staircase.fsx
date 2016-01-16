@@ -1,0 +1,1 @@
+stdin.ReadLine() |> int |> fun n -> for i = 1 to n do printfn "%s" (System.String(' ', n - i) + System.String('#', i))

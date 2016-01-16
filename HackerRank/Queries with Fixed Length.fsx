@@ -14,21 +14,21 @@ module ExtendedStack =
       combine = combine;
       list = [];
       targetList = []; }
-  let isEmpty {list = list} =
-    List.isEmpty list
-  let push x ({map = map; combine = combine; list = list; targetList = targetList} as t) =
+  let isEmpty t =
+    List.isEmpty t.list
+  let push x t =
     { t with
-        list = x :: list;
+        list = x :: t.list;
         targetList =
-          (match targetList with y :: rest -> combine y (map x) | [] -> map x) :: targetList; }
-  let pop ({list = list; targetList = targetList} as t) =
+          (match t.targetList with y :: rest -> t.combine y (t.map x) | [] -> t.map x) :: t.targetList; }
+  let pop t =
     { t with
-        list = List.tail list;
-        targetList = List.tail targetList; }
-  let top {list = list} =
-    List.head list
-  let target {targetList = targetList} =
-    List.head targetList
+        list = List.tail t.list;
+        targetList = List.tail t.targetList; }
+  let top t =
+    List.head t.list
+  let target t =
+    List.head t.targetList
 
 module ExtendedQueue =
   // Invariant: the queue is nonempty if and only if outStack is nonempty.
@@ -45,33 +45,33 @@ module ExtendedQueue =
     { combine = combine;
       inStack = ES.empty map combine;
       outStack = ES.empty map (fun x y -> combine y x); }
-  let isEmpty {outStack = outStack} =
-    ES.isEmpty outStack
-  let ensureOut ({inStack = inStack; outStack = outStack} as t) =
-    if ES.isEmpty outStack then
+  let isEmpty t =
+    ES.isEmpty t.outStack
+  let ensureOut t =
+    if ES.isEmpty t.outStack then
       let rec rev acc stack =
         if ES.isEmpty stack then
           (acc, stack)
         else
           rev (ES.push (ES.top stack) acc) (ES.pop stack)
-      let (outStack, inStack) = rev outStack inStack
+      let (outStack, inStack) = rev t.outStack t.inStack
       {t with inStack = inStack; outStack = outStack}
     else
       t
-  let rec push x ({inStack = inStack; outStack = outStack} as t) =
-    match ES.isEmpty inStack, ES.isEmpty outStack with
-    | true, true -> {t with outStack = ES.push x outStack}
+  let rec push x t =
+    match ES.isEmpty t.inStack, ES.isEmpty t.outStack with
+    | true, true -> {t with outStack = ES.push x t.outStack}
     | false, true -> push x (ensureOut t)
-    | _, false -> {t with inStack = ES.push x inStack}
-  let pop ({outStack = outStack} as t) =
-    ensureOut {t with outStack = ES.pop outStack}
-  let top {outStack = outStack} =
-    ES.top outStack
-  let target {combine = combine; inStack = inStack; outStack = outStack} =
-    if ES.isEmpty inStack then
-      ES.target outStack
+    | _, false -> {t with inStack = ES.push x t.inStack}
+  let pop t =
+    ensureOut {t with outStack = ES.pop t.outStack}
+  let top t =
+    ES.top t.outStack
+  let target t =
+    if ES.isEmpty t.inStack then
+      ES.target t.outStack
     else
-      combine (ES.target outStack) (ES.target inStack)
+      t.combine (ES.target t.outStack) (ES.target t.inStack)
 
 match Console.ReadLine().Split(' ') |> Array.map int with
 | [|n; q|] ->

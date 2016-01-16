@@ -1,0 +1,1 @@
+{1 .. stdin.ReadLine() |> int} |> Seq.iter (fun _ -> stdin.ReadLine() |> int |> fun n -> n.ToString() |> Seq.map (fun c -> int c - int '0') |> Seq.filter (fun d -> d <> 0 && n % d = 0) |> Seq.length |> printfn "%d")
