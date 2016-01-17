@@ -1,0 +1,1 @@
+stdin.ReadLine().ToCharArray() |> Array.distinct |> (fun cs -> System.String(cs)) |> printfn "%s"
