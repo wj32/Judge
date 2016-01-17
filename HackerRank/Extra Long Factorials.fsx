@@ -1,0 +1,1 @@
+[for i in 1 .. stdin.ReadLine() |> int do yield bigint i] |> List.reduce ( * ) |> printfn "%A"
