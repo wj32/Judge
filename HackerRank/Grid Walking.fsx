@@ -27,7 +27,6 @@ let modPow =
   loop 1L
 
 let fallingFactorial = let rec loop acc x = function 0 -> acc | n -> loop ((acc * x) % P) (x - 1L) (n - 1) in loop 1L
-let modpow (x : int64) (n : int64) (p : int64) = int64 (bigint.ModPow(bigint x, bigint n, bigint p))
 let binomial x n = (fallingFactorial x n * modPow (fallingFactorial (int64 n) n) (int P - 2)) % P
 
 let walks (grid : int array) (x : int array) m =
