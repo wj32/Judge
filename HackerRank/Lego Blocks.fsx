@@ -1,5 +1,3 @@
-open System.Collections.Generic
-
 let P = 1000000007L
 
 let modPow =

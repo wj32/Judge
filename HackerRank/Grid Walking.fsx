@@ -1,6 +1,3 @@
-open System
-open System.Collections.Generic
-
 let memoize3D ni nj nk invalid (f : (int -> int -> int -> 'a) -> int -> int -> int -> 'a) =
   let mem = Array3D.create ni nj nk invalid
   let rec g i j k =
@@ -63,13 +60,13 @@ let walks (grid : int array) (x : int array) m =
       sum)
   multiDimensionalWalks 0 (grid.Length - 1) m
 
-let t = Console.ReadLine() |> int
+let t = stdin.ReadLine() |> int
 
 for _ in { 1 .. t } do
-  match Console.ReadLine().Split(' ') |> Array.map int with
+  match stdin.ReadLine().Split(' ') |> Array.map int with
   | [|n; m|] ->
-    let x = Console.ReadLine().Split(' ') |> Array.map int
-    let d = Console.ReadLine().Split(' ') |> Array.map int
+    let x = stdin.ReadLine().Split(' ') |> Array.map int
+    let d = stdin.ReadLine().Split(' ') |> Array.map int
     printfn "%d" (walks d x m)
   | _ ->
     failwith "Invalid input"
