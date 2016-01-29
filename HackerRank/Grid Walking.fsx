@@ -6,12 +6,15 @@ let memoize3D ni nj nk invalid (f : (int -> int -> int -> 'a) -> int -> int -> i
   let rec g i j k =
     h g i j k
   and h r i j k =
-    match mem.[i, j, k] with
-    | value when value <> invalid -> value
-    | value ->
-      let value = f g i j k
-      mem.[i, j, k] <- value
-      value
+    if 0 <= i && i < ni && 0 <= j && j < nj && 0 <= k && k < nk then
+      match mem.[i, j, k] with
+      | value when value <> invalid -> value
+      | value ->
+        let value = f g i j k
+        mem.[i, j, k] <- value
+        value
+    else
+      f g i j k
   g
 
 let P = 1000000007L
@@ -35,7 +38,7 @@ let walks (grid : int array) (x : int array) m =
       grid.[i] - x + 1
     else
       x
-  let oneDimensionalWalks = memoize3D grid.Length (Seq.max grid + 1) (m + 1) -1L (fun r i x m ->
+  let oneDimensionalWalks = memoize3D grid.Length (Seq.max grid / 2 + 2) (m + 1) -1L (fun r i x m ->
     if m = 0 then
       1L
     else
