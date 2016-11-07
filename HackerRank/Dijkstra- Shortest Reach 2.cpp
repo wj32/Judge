@@ -2,7 +2,6 @@
 #include <cstdio>
 #include <vector>
 #include <queue>
-#include <map>
 #include <iostream>
 #include <algorithm>
 using namespace std;
@@ -20,33 +19,33 @@ public:
 
 int main() {
     int t;
-    cin >> t;
+    scanf("%d", &t);
     
     for (int i = 0; i < t; i++) {
         int n, m;
-        cin >> n >> m;
+        scanf("%d %d", &n, &m);
         
-        map<int, Node *> nodes;
+        Node** nodes = new Node*[n + 1];
         
         for (int j = 1; j <= n; j++) {
-            nodes.insert(make_pair(j, new Node(j)));
+            nodes[j] = new Node(j);
         }
         
         for (int j = 0; j < m; j++) {
             int x, y, r;
-            cin >> x >> y >> r;
-            Node *u = nodes.find(x)->second;
-            Node *v = nodes.find(y)->second;
-            u->adjacent.push_back(make_pair(v, r));
-            v->adjacent.push_back(make_pair(u, r));
+            scanf("%d %d %d", &x, &y, &r);
+            Node *u = nodes[x];
+            Node *v = nodes[y];
+            u->adjacent.emplace_back(v, r);
+            v->adjacent.emplace_back(u, r);
         }
         
         int s;
-        cin >> s;
-        priority_queue<pair<int, Node *>> pq;
+        scanf("%d", &s);
+        priority_queue<pair<int, Node*>> pq;
         
-        nodes.find(s)->second->distance = 0;
-        pq.push(make_pair(0, nodes.find(s)->second));
+        nodes[s]->distance = 0;
+        pq.push(make_pair(0, nodes[s]));
         
         while (!pq.empty()) {
             const auto d = pq.top().first;
@@ -74,7 +73,7 @@ int main() {
                 continue;
             }
             
-            cout << (first ? "" : " ") << (int)nodes.find(j)->second->distance;
+            cout << (first ? "" : " ") << (int)nodes[j]->distance;
             first = false;
         }
         
