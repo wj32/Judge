@@ -1,7 +1,6 @@
 class Solution {
 public:
-    struct Node
-    {
+    struct Node {
         bool entry;
         int index;
         pair<int, int> position;
@@ -26,6 +25,7 @@ public:
 
         while (!s.empty()) {
             auto* const u = &s.top();
+            const auto p = u->position;
 
             if (u->entry) {
                 if (u->index == word.size()) {
@@ -33,11 +33,11 @@ public:
                 }
 
                 u->entry = false;
-                board[u->position.first][u->position.second] = '\0';
+                board[p.first][p.second] = '\0';
 
                 const auto tryPosition = [&](int di, int dj) {
-                    const int i = u->position.first + di;
-                    const int j = u->position.second + dj;
+                    const int i = p.first + di;
+                    const int j = p.second + dj;
                     if ((i >= 0) && (i < m) && (j >= 0) && (j < n) &&
                         (board[i][j] == word[u->index])) {
                         s.push({true, u->index + 1, {i, j}});
@@ -50,7 +50,7 @@ public:
                 tryPosition(0, 1);
             }
             else {
-                board[u->position.first][u->position.second] = word[u->index - 1];
+                board[p.first][p.second] = word[u->index - 1];
                 s.pop();
             }
         }
