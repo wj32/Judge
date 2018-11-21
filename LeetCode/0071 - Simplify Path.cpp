@@ -5,8 +5,7 @@ public:
         size_t i = 0;
 
         while (i < path.size()) {
-            const auto j = [&]
-            {
+            const auto j = [&] {
                 const auto j = path.find('/', i);
                 if (j != string::npos) {
                     return j;

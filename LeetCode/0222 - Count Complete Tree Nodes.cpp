@@ -14,8 +14,7 @@ public:
             return 0;
         }
 
-        const auto h = [&]
-        {
+        const auto h = [&] {
             int h = -1;
             auto node = root;
             do {
