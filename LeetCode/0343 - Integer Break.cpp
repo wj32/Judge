@@ -23,12 +23,9 @@ public:
 
         const auto ideal = static_cast<int>(static_cast<double>(n) / exp(1));
         int maximum = 1;
-        const auto attempt = [&](int d) {
+        for (const int d : {-1, 0, 1}) {
             maximum = max(maximum, splitProduct(n, max(ideal + d, 2)));
         };
-        attempt(-1);
-        attempt(0);
-        attempt(1);
         return maximum;
     }
 };
