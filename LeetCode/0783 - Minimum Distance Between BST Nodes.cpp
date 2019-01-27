@@ -19,7 +19,7 @@ public:
                        next - node->val));
     }
 
-    int getMinimumDifference(TreeNode* root) {
+    int minDiffInBST(TreeNode* root) {
         return static_cast<int>(recurse(root, numeric_limits<long long>::min() / 2, numeric_limits<long long>::max() / 2));
     }
 };
